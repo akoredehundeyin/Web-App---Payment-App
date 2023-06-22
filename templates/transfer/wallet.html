@@ -1,0 +1,107 @@
+{% extends "payapp/base.html" %}
+
+{% load static %}
+
+{% block title %}
+    Wallet Page
+{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <div style="white-space: nowrap;float: right;padding: 10px;color: #1D1093">
+            <a >Your balance now<img src="{% static 'images/payapp.png' %}" alt="PayApp Image" height="15px">: <i style="font-weight: bolder; font-size: large">{{user.balance}}</i></a>
+        </div>
+           {% if wallet_transfers|length > 0 %}
+        <div>
+            <a style="float: left; margin-top: 50px;margin-bottom: 15px; color: #1D1093; font-size: 19.6px; font-weight: bold">Follow your money trail🤑: Wallet Transaction History<img src="{% static 'images/payapp.png' %}" alt="PayApp Image" height="15px"></a>
+            <style>
+                table {
+                    border-collapse: collapse;
+                    width: 100%;
+                }
+
+                th, td {
+                    text-align: left;
+                    padding: 8px;
+                    border: 1px solid #000000;
+                    color: #000000;
+                }
+
+                th {
+                    background-color: #ffffff;
+
+                }
+            </style>
+            <table>
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>User</th>
+                    <th>Amount In</th>
+                    <th>Amount Out</th>
+                    <th>Balance</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for wallet_transfer in wallet_transfers %}
+                    <tr>
+                        <td>{{ wallet_transfer.date }}</td>
+                        <td>
+                            {% if wallet_transfer.sender == user.username %}
+                                {% with type="DR" %}
+                                    {{ type }}
+                                {% endwith %}
+                            {% else %}
+                                {% with type="CR" %}
+                                    {{ type }}
+                                {% endwith %}
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if wallet_transfer.sender == user.username %}
+                                {{ wallet_transfer.receiver }}
+                            {% elif wallet_transfer.receiver == user.username %}
+                                {{ wallet_transfer.sender }}
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if wallet_transfer.sender == user.username %}
+                                {% with amount_in="-" %}
+                                    {{ amount_in }}
+                                {% endwith %}
+                            {% else %}
+                                {% with amount_in="|" %}
+                                    {{ wallet_transfer.quote_amount }}{{ wallet_transfer.receiver_currency }}{{ amount_in }}{{ wallet_transfer.amount }}{{ wallet_transfer.sender_currency }}
+                                {% endwith %}
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if wallet_transfer.sender == user.username %}
+                                {% with amount_out="|" %}
+                                    {{ wallet_transfer.amount }}{{ wallet_transfer.sender_currency }}{{ amount_out }}{{ wallet_transfer.quote_amount }}{{ wallet_transfer.receiver_currency }}
+                                {% endwith %}
+                            {% else %}
+                                {% with amount_out="-" %}
+                                    {{ amount_out }}
+                                {% endwith %}
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if wallet_transfer.sender == user.username %}
+                                {{ wallet_transfer.sender_balance_amount }}{{ wallet_transfer.sender_currency }}
+                            {% elif wallet_transfer.receiver == user.username %}
+                                {{ wallet_transfer.receiver_balance_amount }}{{ wallet_transfer.receiver_currency }}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+            {% else %}
+                <h5 style="text-align: center;margin: 0;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);white-space: nowrap;color: #1D1093; font-size: 20px">You have not sent or received funds. Go to Send|Receive to start<img src="{% static 'images/payapp.png' %}" alt="PayApp Image" height="24px">.</h5>
+            {% endif %}
+        {% endif %}
+    {% endblock %}

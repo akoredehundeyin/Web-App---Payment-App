@@ -1,0 +1,28 @@
+{% extends "payapp/base.html" %}
+
+{% load static %}
+
+{% block title %}
+    Request Fund Homepage
+{% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+    <body>
+    <div class="container text-center py-5 mx-auto" style="text-align: center;margin: 0;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);color: #1D1093">
+        <h2 class="fw-bold" style="white-space: nowrap">Take action on your fund requests or create new ones - it's up to you!</h2>
+        <div class="row justify-content-center mt-5" style="font-weight: bold; font-family: sans-serif;text-decoration: none;font-size: 21px;display: flex;flex-direction: row">
+            <div>
+                <a href="/pending_fund_requests_list" style="text-decoration: none;color: #1D1093;padding-right: 10px"><img src="{% static 'images/payapp.png' %}" alt="PayApp Image" height="18px">Act on a Request<span style="color: red; font-size: 24px;">👍🏼👎🏼</span>.</a>
+                <a href="/request" style="text-decoration: none;color: #1D1093;padding-right: 10px;padding-left: 10px">Make a New Request<img src="{% static 'images/payapp.png' %}" alt="PayApp Image" height="18px">.</a>
+                <a href="/fund_requests_list" style="text-decoration: none;color: #1D1093;padding-left: 10px"><img src="{% static 'images/payapp.png' %}" alt="PayApp Image" height="18px">Fund Requests Trail📊.</a>
+            </div>
+
+
+        </div>
+    </div>
+    </body>
+
+{% endblock %}

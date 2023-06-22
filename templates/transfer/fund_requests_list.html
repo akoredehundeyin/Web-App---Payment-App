@@ -1,0 +1,61 @@
+{% extends "payapp/base.html" %}
+
+{% load static %}
+
+{% block title %}
+    Fund Requests List
+{% endblock %}
+
+{% block content %}
+
+
+    {% if user.is_authenticated %}
+
+        {% if fund_requests|length > 0 %}
+            <h5 style="text-decoration: none;color: #1D1093;font-family: sans-serif;font-weight: bold;font-size: 22px;margin-top: 50px">Check out your sent and received fund requests!<img src="{% static 'images/payapp.png' %}" alt="PayApp Image" height="22px"></h5>
+            <br>
+            <style>
+                table {
+                    border-collapse: collapse;
+                    width: 100%;
+                }
+
+                th, td {
+                    text-align: left;
+                    padding: 8px;
+                    border: 1px solid #000000;
+                    color: #000000;
+                }
+
+                th {
+                    background-color: #ffffff;
+
+                }
+            </style>
+            <table>
+                <thead>
+                <tr>
+                    <th>Requester</th>
+                    <th>Funder</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for fund_request in fund_requests %}
+                    <tr>
+                        <td>{{ fund_request.requester }}</td>
+                        <td>{{ fund_request.funder }}</td>
+                        <td>{{ fund_request.amount }}{{ fund_request.currency }}</td>
+                        <td>{{ fund_request.status }}</td>
+                        <td>{{ fund_request.date }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <h4 style="text-align: center;margin: 0;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);white-space: nowrap;color: #101093"><img src="{% static 'images/payapp.png' %}" alt="PayApp Image" height="24px">Money on the Move: Make your first <a href="/request" style="text-decoration: none;color: #1D1093;font-weight: bold">Fund Request</a> today!🙂.</h4>
+        {% endif %}
+    {% endif %}
+{% endblock %}

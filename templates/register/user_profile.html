@@ -1,0 +1,78 @@
+{% extends "payapp/base.html" %}
+
+{% load static %}
+
+{% block title %}
+    User Profile Page
+{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <div class="text-center">
+            <a style="justify-content: center ; margin-top: 30px;margin-bottom: 15px; color: #1D1093; font-size: 19.6px; font-weight: bold">Your data is safe with us.<img src="{% static 'images/payapp.png' %}" alt="PayApp Image" height="15px"></a>
+        </div>
+        <div >
+            <style>
+                table {
+                    border-collapse: collapse;
+                    width: 100%;
+                    margin-top: 2%;
+                    color: #1D1093;
+
+                }
+
+                th, td {
+                    text-align: left;
+                    padding: 8px;
+                    border-bottom: 0px solid #000000;
+                    border-right: 1px solid #570808;
+                    color: #1D1093;
+                }
+
+
+                tr:nth-child(even) {background-color: #F0EAD6;}
+                tr:nth-child(odd) {background-color: navajowhite;}
+
+                th:first-child, td:first-child {
+                    width: 9%;
+                }
+
+                th {
+                    background-color: #ffffff;
+                }
+            </style>
+            <table>
+                <tbody>
+                <tr>
+                    <td><b>First Name:</b></td>
+                    <td>{{ user.first_name }}</td>
+                </tr>
+                <tr>
+                    <td><b>Last Name:</b></td>
+                    <td>{{ user.last_name }}</td>
+                </tr>
+                <tr>
+                    <td><b>Username:</b></td>
+                    <td>{{ user.username }}</td>
+                </tr>
+                <tr>
+                    <td><b>eMail:</b></td>
+                    <td>{{ user.email }}</td>
+                </tr>
+                <tr>
+                    <td><b>Date Joined:</b></td>
+                    <td>{{ user.date_joined }}</td>
+                </tr>
+                <tr>
+                    <td><b>Balance:</b></td>
+                    <td>{{ user.balance }}</td>
+                </tr>
+                <tr>
+                    <td><b>Last Login:</b></td>
+                    <td>{{ user.last_login }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+{% endblock %}

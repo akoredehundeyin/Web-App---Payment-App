@@ -1,0 +1,19 @@
+{% extends "payapp/base.html" %}
+
+{% block title %}
+    User Creation
+{% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div style="margin-bottom: 35px;color: #1D1093">
+        <h1>Register</h1>
+        <form method="post" class="form-group">
+            {% csrf_token %}
+            {{ user_registration|crispy }}
+            <button type="submit" class="btn btn-success" style="background-color: #ffc61a; border: 1px solid #1D1093;color: #1D1093;font-weight: bold; transition-duration: 0.3s;" onmouseover="this.style.backgroundColor='#A0DAA9'; this.style.color='#006b1b'; this.style.border='1px solid #A0DAA9';" onmouseout="this.style.backgroundColor='#ffc61a'; this.style.color='#1D1093'; this.style.border='1px solid #1D1093';">Register</button>
+        </form>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "payapp/base.html" %}
+
+{% load static %}
+{% block title %}
+    Notifications Page
+{% endblock %}
+
+{% block content %}
+
+    {%  if user.is_authenticated %}
+        {% if notifications|length > 0 %}
+            <ul>
+            {% for notification in notifications %}
+                {% if not notification.read %}
+                    <li style="color: darkred">
+                        <a style="font-weight: bold;color: #1D1093" href="{% url 'mark_notification_read' notification.id %}">{{ notification.message }}</a>
+                    </li>
+                {% else %}
+                    <li>
+                        {{ notification.message }}
+                    </li>
+                {% endif %}
+            {% endfor %}
+            </ul>
+        {% else %}
+            <h4 style="text-align: center;margin: 0;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);white-space: nowrap;color: #1D1093"><img src="{% static 'images/payapp.png' %}" alt="PayApp Image" height="24px">You do not have any new notifications. Many thanks for checking🙂.</h4>
+        {% endif %}
+    {% endif %}
+
+{% endblock %}

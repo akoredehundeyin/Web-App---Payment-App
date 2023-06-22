@@ -1,0 +1,85 @@
+{% extends "payapp/base.html" %}
+<div style="background-color: #F0EDE5">
+{% load static %}
+
+{% block title %}
+    Help Page
+{% endblock %}
+
+    {% block content %}
+
+        {%  if user.is_authenticated %}
+                <h2 style="text-align: center;font-family: sans-serif; background-color: #Ffffff">🛠️Welcome to the Help Page<img src="{% static 'images/payapp.png' %}" alt="PayApp Image" height="30px"></h2>
+
+
+            <div style="background-color: #Ffffff;margin-bottom: 40px">
+                <h5>Find help on how to navigate this website here</h5>
+
+                <h4><img src="{% static 'images/payapp.png' %}" alt="PayApp Image" height="18px">Send Funds💸</h4>
+                <ul>
+                    <i style="font-size: 10px">SENDING FUNDS TO REGISTERED USERS: MONEY ON THE MOVE</i>
+                    <li>From your dashboard page, click <strong style="font-size: 15px;font-family: sans-serif;color: #1D1093">Send|Request</strong>.</li>
+                    <li>Click <strong style="font-size: 15px;font-family: sans-serif;color: #1D1093">Send</strong>.</li>
+                    <li>In the Receiver field, type in the user to whom you want to send funds.</li>
+                    <li>In the Amount field, type in the amount you’d like to send in your currency.</li>
+                    <li>Confirm your inputs and click <strong style="font-size: 15px;font-family: sans-serif;color: #1D1093">Send</strong>.</li>
+                    <li>You would then receive a success or an error message accordingly.</li>
+                </ul>
+                <h4>💸Request Funds<img src="{% static 'images/payapp.png' %}" alt="PayApp Image" height="18px"></h4>
+                <ul>
+                    <i style="font-size: 10px">REQUESTING FUNDS FROM REGISTERED USERS: GET PAID OR TRY AGAIN</i>
+                    <li>From your dashboard page, click <strong style="font-size: 15px;font-family: sans-serif;color: #1D1093">Send|Request</strong>.</li>
+                    <li>Click <strong style="font-size: 15px;font-family: sans-serif;color: #1D1093">Request</strong>.</li>
+                    <li>Click <strong style="font-size: 15px;font-family: sans-serif;color: #1D1093">Make a New Request</strong>.</li>
+                    <li>In the Funder field, type in the user from whom you want to request funds.</li>
+                    <li>In the Amount field, type in the amount you’d like to request in your currency.</li>
+                    <li>Confirm your inputs and click <strong style="font-size: 15px;font-family: sans-serif;color: #1D1093">Request</strong>.</li>
+                    <li>You would then receive a success or an error message accordingly.</li>
+                </ul>
+                <h4><img src="{% static 'images/payapp.png' %}" alt="PayApp Image" height="18px">Approve Fund Request✅</h4>
+                <ul>
+                    <i style="font-size: 10px">YOU ARE TOTALLY IN CHARGE: APPROVING FUND REQUESTS </i>
+                    <li>From your dashboard page, click <strong style="font-size: 15px;font-family: sans-serif;color: #1D1093">Send|Request</strong>.</li>
+                    <li>Click <strong style="font-size: 15px;font-family: sans-serif;color: #1D1093">Request</strong>.</li>
+                    <li>Click <strong style="font-size: 15px;font-family: sans-serif;color: #1D1093">Action a Request</strong>.</li>
+                    <i style="font-size: 10px">IF THERE ARE PENDING FUND REQUESTS, THEY WOULD BE LISTED ON THIS PAGE.</i>
+                    <li>Confirm the details of a fund request and click <strong style="font-size: 15px;font-family: sans-serif;color: #1D1093">Approve</strong> to approve the fund request.</li>
+                    <li>You would then receive a success or an error message accordingly.</li>
+                </ul>
+                <h4><img src="{% static 'images/payapp.png' %}" alt="PayApp Image" height="18px">Decline Fund Request⛔️</h4>
+                <ul>
+                    <i style="font-size: 10px">MANAGING YOUR MONEY MOVES: DECLINING FUND REQUESTS</i>
+                    <li>From your dashboard page, click <strong style="font-size: 15px;font-family: sans-serif;color: #1D1093">Send|Request</strong>.</li>
+                    <li>Click <strong style="font-size: 15px;font-family: sans-serif;color: #1D1093">Request</strong>.</li>
+                    <li>Click <strong style="font-size: 15px;font-family: sans-serif;color: #1D1093">Action a Request</strong>.</li>
+                    <i style="font-size: 10px">IF THERE ARE PENDING FUND REQUESTS, THEY WOULD BE LISTED ON THIS PAGE.</i>
+                    <li>Confirm the details of a fund request and click <strong style="font-size: 15px;font-family: sans-serif;color: #1D1093">Decline</strong> to decline the fund request.</li>
+                    <li>You would then receive a success or an error message accordingly.</li>
+                </ul>
+                <h4><img src="{% static 'images/payapp.png' %}" alt="PayApp Image" height="18px">View Wallet Balance💳 &amp; Transaction History📈</h4>
+                <ul>
+                    <i style="font-size: 10px">YOUR WALLET AT A GLANCE</i>
+                    <li>From your dashboard page, click <strong style="font-size: 15px;font-family: sans-serif;color: #1D1093">Wallet</strong>.</li>
+                </ul>
+                <h4>📩View Notifications<img src="{% static 'images/payapp.png' %}" alt="PayApp Image" height="18px"></h4>
+                <ul>
+                    <i style="font-size: 10px">STAY IN THE LOOP: NOTIFICATIONS WHILE YOU WERE AWAY.</i>
+                    <li>From your dashboard page, click <strong style="font-size: 15px;font-family: sans-serif;color: #1D1093"><i class="glyphicon glyphicon-envelope i"></i></strong>.</li>
+                </ul>
+                <h4>View User Profile<img src="{% static 'images/payapp.png' %}" alt="PayApp Image" height="18px">🪪</h4>
+                <ul>
+                    <i style="font-size: 10px">SEE WHAT WE KNOW ABOUT YOU HERE.</i>
+                    <li>From your dashboard page, click <strong style="font-size: 15px;font-family: sans-serif;color: #1D1093"><i class="glyphicon glyphicon-user i"></i></strong>.</li>
+                </ul>
+                <h4>Logout<img src="{% static 'images/payapp.png' %}" alt="PayApp Image" height="18px">🪪</h4>
+                <ul>
+                    <i style="font-size: 10px">WE REALLY DON'T WANT TO SEE YOU GO.</i>
+                    <li>From your dashboard page, click <strong style="font-size: 15px;font-family: sans-serif;color: #1D1093"><i class="glyphicon glyphicon-off i"></i></strong>.</li>
+                </ul>
+
+            </div>
+
+        {% endif %}
+
+    {% endblock %}
+</div>

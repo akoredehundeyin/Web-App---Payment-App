@@ -1,0 +1,28 @@
+{% extends 'payapp/base.html' %}
+
+{% block title %}
+    User Login
+{% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <h1 style="color: #1D1093">Login</h1>
+    <form method="post" class="form-group" style="color: #1D1093">
+        {% csrf_token %}
+        {{ user_login|crispy }}
+        <button type="submit" class="btn btn-success" style="background-color: #ffc61a; border: 1px solid #1D1093;color: #1D1093;font-weight: bold; transition-duration: 0.3s;" onmouseover="this.style.backgroundColor='#A0DAA9'; this.style.color='#006b1b'; this.style.border='1px solid #A0DAA9';" onmouseout="this.style.backgroundColor='#ffc61a'; this.style.color='#1D1093'; this.style.border='1px solid #1D1093';">Login</button>
+    </form>
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col">
+                    <p>Password amnesia? <a href="#">Reset password</a>.</p>
+                </div>
+                <div class="col">
+                    <p>Ready to start? <a href="/register">Create an account</a>.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

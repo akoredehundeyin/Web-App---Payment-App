@@ -1,0 +1,78 @@
+{% extends "payapp/base.html" %}
+
+{% load static %}
+
+{% block title %}
+    Pending Fund Requests List
+{% endblock %}
+
+{% block content %}
+
+
+    {% if user.is_authenticated %}
+
+        {% if pending_fund_requests|length > 0 %}
+            <h5 style="text-align: center;color: #1D1093;font-weight: bold;font-size: 16.7px"><img src="{% static 'images/payapp.png' %}" alt="PayApp Image" height="18px">Take Charge of Fund Requests awaiting your action!🖲️</h5>
+            <br>
+            <style>
+                table {
+                    border-collapse: collapse;
+                    width: 100%;
+                }
+
+                th, td {
+                    text-align: left;
+                    padding: 8px;
+                    border: 1px solid #000000;
+                    color: #000000;
+                }
+
+                th {
+                    background-color: #ffffff;
+
+                }
+            </style>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Requester</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for pending_fund_request in pending_fund_requests %}
+                        <tr>
+                            <td>{{ pending_fund_request.requester }}</td>
+                            <td>{{ pending_fund_request.amount }}{{ pending_fund_request.currency }}</td>
+                            <td>{{ pending_fund_request.status }}</td>
+                            <td>{{ pending_fund_request.date }}</td>
+                            <td>
+                                {% if pending_fund_request.status == "PENDING" %}
+                                    <div style="display: inline-block;gap: 10px">
+                                        <form method="post" action="{% url 'approve_fund_request' request_id=pending_fund_request.id %}">
+                                            {% csrf_token %}
+                                            <button type="submit" style="background-color: #A0DAA9;color: #006b1b;width: 100%;border: none;border-radius: 45%;transition-duration: 0.3s;" onmouseover="this.style.backgroundColor='#006b1b'; this.style.color='#A0DAA9';" onmouseout="this.style.backgroundColor='#A0DAA9'; this.style.color='#006b1b';">Approve</button>
+                                        </form>
+                                    </div>
+                                    <div style="display: inline-block;gap: 10px">
+                                        <form method="post" action="{% url 'decline_fund_request' request_id=pending_fund_request.id %}">
+                                            {% csrf_token %}
+                                            <button type="submit" style="background-color: #E9897E;color: #761c19;width: 100%;border: none;border-radius: 45%;transition-duration: 0.3s;" onmouseover="this.style.backgroundColor='#761c19'; this.style.color='#E9897E';" onmouseout="this.style.backgroundColor='#E9897E'; this.style.color='#761c19';">Decline</button>
+                                        </form>
+                                    </div>
+                                {% else %}
+                                    <span>N/A</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <h4 style="text-align: center;margin: 0;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);white-space: nowrap;color: #1D1093"><img src="{% static 'images/payapp.png' %}" alt="PayApp Image" height="24px">You don't have any pending Fund Requests. Many thanks for checking🙂.</h4>
+        {% endif %}
+    {% endif %}
+{% endblock %}

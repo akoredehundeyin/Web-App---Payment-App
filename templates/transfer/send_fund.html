@@ -1,0 +1,18 @@
+{% extends 'payapp/base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Send Funds
+{% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <h4><a style="text-decoration: none;color: #1D1093;font-family: sans-serif;font-weight: bold">Beam your funds to anyone, with one click!<img src="{% static 'images/payapp.png' %}" alt="PayApp Image" height="22px"></a></h4>
+    <form method="post" class="form-group">
+        {% csrf_token %}
+        {{ send_fund|crispy }}
+        <button type="submit" class="btn btn-success" style="background-color: #ffc61a; border: 1px solid #1D1093;color: #1D1093;font-weight: bold; transition-duration: 0.3s;" onmouseover="this.style.backgroundColor='#A0DAA9'; this.style.color='#006b1b'; this.style.border='1px solid #A0DAA9';" onmouseout="this.style.backgroundColor='#ffc61a'; this.style.color='#1D1093'; this.style.border='1px solid #1D1093';">Send</button>
+    </form>
+{% endblock %}

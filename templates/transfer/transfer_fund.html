@@ -1,0 +1,25 @@
+{% extends "payapp/base.html" %}
+
+{% load static %}
+
+{% block title %}
+    Transfer Funds Page
+{% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+    <body>
+    <div class="container text-center py-5 mx-auto" style="text-align: center;margin: 0;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);">
+        <h2 style="color: #1D1093;font-family: sans-serif;font-weight: bold">Ready to move your money? Send or Request funds now!</h2>
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-6" style="font-weight: bold; font-family: sans-serif;text-decoration: none;font-size: 21px">
+                <a href="/send" style="margin-right: 120px;text-decoration: none;color: #1D1093"><img src="{% static 'images/payapp.png' %}" alt="PayApp Image" height="18px">Send Fund</a>
+                <a href="/request_home" style="margin-left: 120px;text-decoration: none;color: #1D1093">Request Fund<img src="{% static 'images/payapp.png' %}" alt="PayApp Image" height="18px"></a>
+            </div>
+        </div>
+    </div>
+    </body>
+
+{% endblock %}
